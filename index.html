@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Resolution</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 400px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .info {
+            margin: 10px;
+            font-size: 1.2em;
+            padding: 10px;
+            background: #eaeaea;
+            border-radius: 5px;
+        }
+        .info span {
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Current Display Resolution</h1>
+        <div class="info" id="resolution-px"></div>
+        <div class="info" id="resolution-mm"></div>
+        <div class="info" id="resolution-inch"></div>
+        <div class="info" id="screen-orientation"></div>
+    </div>
+    <div class="footer">Developed by Salman Faris wit ChatGPT</div>
+    
+    <script>
+        function updateResolution() {
+            const screenWidthPx = window.innerWidth;
+            const screenHeightPx = window.innerHeight;
+            const dpi = window.devicePixelRatio * 96; // Approximate DPI
+            
+            const screenWidthInches = screenWidthPx / dpi;
+            const screenHeightInches = screenHeightPx / dpi;
+            
+            const screenWidthMm = screenWidthInches * 25.4;
+            const screenHeightMm = screenHeightInches * 25.4;
+            
+            const orientation = screenWidthPx > screenHeightPx ? "Landscape" : "Portrait";
+            
+            document.getElementById("resolution-px").innerHTML = `Resolution: <span>${screenWidthPx} x ${screenHeightPx} px</span>`;
+            document.getElementById("resolution-mm").innerHTML = `Resolution: <span>${screenWidthMm.toFixed(2)} x ${screenHeightMm.toFixed(2)} mm</span>`;
+            document.getElementById("resolution-inch").innerHTML = `Resolution: <span>${screenWidthInches.toFixed(2)} x ${screenHeightInches.toFixed(2)} inches</span>`;
+            document.getElementById("screen-orientation").innerHTML = `Screen Orientation: <span>${orientation}</span>`;
+        }
+        
+        window.addEventListener('resize', updateResolution);
+        updateResolution();
+    </script>
+</body>
+</html>
+
