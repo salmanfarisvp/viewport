@@ -28,8 +28,6 @@ Viewport is a simple web application that displays the current screen resolution
 - **Locale**: System language and region settings
 
 
-
-
 ## Live Demo
 
 [Check it out here](http://salmanfarisvp.com/viewport)
