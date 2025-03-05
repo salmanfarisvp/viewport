@@ -2,12 +2,33 @@
 
 Viewport is a simple web application that displays the current screen resolution in pixels, millimetres, and inches and the screen orientation. It dynamically updates the values whenever the screen size changes.
 
-## Features
+## Display Parameters
 
-- Displays screen resolution in **pixels, millimeters, and inches**.
-- Detects **screen orientation** (Portrait/Landscape).
-- **Auto-updates** when the screen is resized.
-- Clean and minimal **UI design**.
+### Screen Information
+- **Screen Resolution**: The total number of pixels displayed horizontally and vertically (e.g., 1920x1080)
+- **Viewport Size**: The visible area of the web page in the browser window
+- **Device Pixel Ratio**: The ratio between physical pixels and logical pixels (important for Retina/high-DPI displays)
+- **Display Dimensions**: Physical size of the screen in inches and centimeters
+- **Screen Diagonal Size**: The diagonal measurement of the screen in inches and centimeters
+- **Color Depth**: Number of bits used to represent the color of a single pixel
+- **Pixel Density**: The number of pixels per inch (PPI/DPI) of the display
+- **Refresh Rate**: The number of times per second the display updates (measured in Hz)
+- **Display Type**: The type of device (Desktop, Mobile, or Tablet)
+- **Display Settings**: Current display preferences (Dark Mode, Light Mode, Reduced Motion, etc.)
+- **Screen Orientation**: Current orientation of the device (Portrait or Landscape)
+
+### System Information
+- **Device Memory**: Available RAM on the device (if accessible)
+- **Browser Information**: Current browser name, version, and platform
+- **Operating System**: The operating system running on the device
+- **Date and Time**: Current local date and time
+- **Timezone**: Local timezone with UTC offset
+- **Location**: Approximate geographical location based on IP
+- **IP Address**: Current public IP address
+- **Locale**: System language and region settings
+
+
+
 
 ## Live Demo
 

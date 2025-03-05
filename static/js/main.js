@@ -164,14 +164,54 @@ function updateDateTime() {
     document.getElementById('locale').textContent = localeDisplay;
 }
 
+// Cache for location data
+let locationCache = {
+    data: null,
+    timestamp: null,
+    expiryTime: 1800000 // 30 minutes in milliseconds
+};
+
 async function getLocation() {
     try {
+        // Check if we have cached data that's not expired
+        if (locationCache.data && locationCache.timestamp &&
+            (Date.now() - locationCache.timestamp < locationCache.expiryTime)) {
+            document.getElementById('location').textContent = locationCache.data;
+            return;
+        }
+
+        // Try ipapi.co first
         const response = await fetch('https://ipapi.co/json/');
+        if (!response.ok) throw new Error('ipapi.co failed');
+
         const data = await response.json();
-        const location = `${data.city}, ${data.country_name}`;
+        const location = `${data.city || 'Unknown City'}, ${data.country_name || 'Unknown Country'}`;
+
+        // Cache the successful response
+        locationCache.data = location;
+        locationCache.timestamp = Date.now();
+
         document.getElementById('location').textContent = location;
     } catch (error) {
-        document.getElementById('location').textContent = 'Not Available';
+        console.warn('Primary location service failed, trying fallback:', error);
+
+        try {
+            // Fallback to ip-api.com
+            const fallbackResponse = await fetch('http://ip-api.com/json/');
+            if (!fallbackResponse.ok) throw new Error('Fallback service failed');
+
+            const fallbackData = await fallbackResponse.json();
+            const fallbackLocation = `${fallbackData.city || 'Unknown City'}, ${fallbackData.country || 'Unknown Country'}`;
+
+            // Cache the successful fallback response
+            locationCache.data = fallbackLocation;
+            locationCache.timestamp = Date.now();
+
+            document.getElementById('location').textContent = fallbackLocation;
+        } catch (fallbackError) {
+            console.error('All location services failed:', fallbackError);
+            document.getElementById('location').textContent = 'Location service unavailable';
+        }
     }
 }
 
