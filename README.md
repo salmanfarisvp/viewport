@@ -1,3 +1,4 @@
+[![pages-build-deployment](https://github.com/salmanfarisvp/viewport/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/salmanfarisvp/viewport/actions/workflows/pages/pages-build-deployment)
 # Viewport 🖥️
 
 Viewport is a simple web application that displays the current screen resolution in pixels, millimetres, and inches and the screen orientation. It dynamically updates the values whenever the screen size changes.
